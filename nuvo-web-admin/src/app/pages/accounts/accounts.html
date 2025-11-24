@@ -16,7 +16,8 @@
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-100">
-                <tr *ngFor="let acc of accounts" class="hover:bg-gray-50 transition-colors">
+                <tr *ngFor="let acc of accounts" (click)="openModal(acc)"
+                    class="hover:bg-gray-50 transition-colors cursor-pointer">
                     <td class="p-4 font-medium text-nuvo-dark">#{{ acc.userId }}</td>
                     <td class="p-4 text-gray-500 font-mono">{{ acc.accountNumber }}</td>
                     <td class="p-4 font-bold text-nuvo-green">
@@ -30,5 +31,109 @@
                 </tr>
             </tbody>
         </table>
+    </div>
+
+    <!-- MODAL -->
+    <div *ngIf="showModal"
+        class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden transform transition-all scale-100">
+
+            <!-- Header -->
+            <div class="bg-nuvo-dark text-white p-6 flex justify-between items-center">
+                <div>
+                    <h3 class="text-xl font-bold">Detalles de la Cuenta</h3>
+                    <p class="text-sm text-gray-300">Usuario ID: #{{ selectedAccount?.userId }}</p>
+                </div>
+                <button (click)="closeModal()"
+                    class="text-white hover:bg-white hover:bg-opacity-20 rounded-full p-2 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Body -->
+            <div class="p-6 space-y-6">
+
+                <!-- User Details (New) -->
+                <div *ngIf="selectedUser" class="flex items-center space-x-4 pb-4 border-b border-gray-100">
+                    <div
+                        class="h-12 w-12 rounded-full bg-nuvo-blue text-white flex items-center justify-center text-xl font-bold">
+                        {{ selectedUser.firstname.charAt(0) }}{{ selectedUser.lastname.charAt(0) }}
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-800">{{ selectedUser.firstname }} {{
+                            selectedUser.lastname }}</h4>
+                        <p class="text-sm text-gray-500">{{ selectedUser.email }}</p>
+                        <span class="text-xs font-bold px-2 py-0.5 rounded bg-gray-100 text-gray-600 mt-1 inline-block">
+                            {{ selectedUser.role }}
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Account Info -->
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                    <p class="text-sm text-gray-500 uppercase tracking-wide font-semibold mb-1">Número de Cuenta</p>
+                    <p class="text-2xl font-mono text-gray-800">{{ selectedAccount?.accountNumber }}</p>
+
+                    <div class="mt-4">
+                        <p class="text-sm text-gray-500 uppercase tracking-wide font-semibold mb-1">Saldo Disponible</p>
+                        <p class="text-3xl font-bold text-nuvo-green">{{ selectedAccount?.balance |
+                            currency:'USD':'symbol':'1.2-2' }}</p>
+                    </div>
+                </div>
+
+                <!-- Loans Section -->
+                <div>
+                    <h4 class="text-lg font-bold text-gray-800 mb-3 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-nuvo-blue" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Estado de Préstamos
+                    </h4>
+
+                    <div *ngIf="isLoadingLoans" class="text-center py-4 text-gray-500">
+                        Cargando información de préstamos...
+                    </div>
+
+                    <div *ngIf="!isLoadingLoans && userLoans.length === 0"
+                        class="text-center py-4 bg-gray-50 rounded-lg border border-dashed border-gray-300 text-gray-500">
+                        Este usuario no tiene préstamos registrados.
+                    </div>
+
+                    <div *ngIf="!isLoadingLoans && userLoans.length > 0" class="space-y-3">
+                        <div *ngFor="let loan of userLoans"
+                            class="flex justify-between items-center p-3 bg-white border border-gray-200 rounded-lg shadow-sm">
+                            <div>
+                                <p class="font-bold text-gray-800">{{ loan.amount | currency:'USD':'symbol':'1.0-0' }}
+                                </p>
+                                <p class="text-xs text-gray-500">{{ loan.termMonths }} meses @ {{ loan.interestRate }}%
+                                </p>
+                            </div>
+                            <span [ngClass]="{
+                                'bg-yellow-100 text-yellow-800': loan.status === 'PENDING',
+                                'bg-green-100 text-green-800': loan.status === 'APPROVED' || loan.status === 'PAID',
+                                'bg-red-100 text-red-800': loan.status === 'REJECTED'
+                            }" class="px-3 py-1 rounded-full text-xs font-bold">
+                                {{ loan.status }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Footer -->
+            <div class="bg-gray-50 p-4 flex justify-end">
+                <button (click)="closeModal()"
+                    class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors font-medium">
+                    Cerrar
+                </button>
+            </div>
+        </div>
     </div>
 </div>

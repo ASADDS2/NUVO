@@ -7,7 +7,7 @@ import com.nuvo.auth.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 // 👇 ESTA LÍNEA ES LA QUE FALTABA 👇
-import org.springframework.web.bind.annotation.CrossOrigin; 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,5 +29,11 @@ public class AuthenticationController {
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request) {
         return ResponseEntity.ok(service.authenticate(request));
+    }
+
+    @org.springframework.web.bind.annotation.GetMapping("/{id}")
+    public ResponseEntity<com.nuvo.auth.entity.User> getUserById(
+            @org.springframework.web.bind.annotation.PathVariable Integer id) {
+        return ResponseEntity.ok(service.getUserById(id));
     }
 }

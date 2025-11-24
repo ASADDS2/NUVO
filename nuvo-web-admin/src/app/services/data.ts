@@ -23,6 +23,10 @@ export class DataService {
     return this.http.get<any[]>(this.loanUrl);
   }
 
+  getLoansByUserId(userId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.loanUrl}/user/${userId}`);
+  }
+
   approveLoan(loanId: number): Observable<any> {
     return this.http.put(`${this.loanUrl}/${loanId}/approve`, {});
   }
@@ -30,5 +34,10 @@ export class DataService {
   // --- POOL ---
   getAllInvestments(): Observable<any[]> {
     return this.http.get<any[]>(this.poolUrl);
+  }
+
+  // --- AUTH ---
+  getUserById(userId: number): Observable<any> {
+    return this.http.get<any>(`http://localhost:8081/api/v1/auth/${userId}`);
   }
 }

@@ -1,0 +1,45 @@
+<div class="flex h-screen bg-nuvo-light">
+    
+    <aside class="w-64 bg-white border-r border-gray-200 flex flex-col shadow-lg z-10">
+        
+        <div class="h-16 flex items-center px-6 border-b border-gray-100">
+            <div class="w-8 h-8 bg-nuvo-green rounded-lg mr-3"></div>
+            <span class="text-xl font-bold text-nuvo-dark tracking-wide">NUVO ADMIN</span>
+        </div>
+
+        <nav class="flex-1 px-4 py-6 space-y-2">
+            
+            <a routerLink="/dashboard" routerLinkActive="bg-nuvo-green/10 text-nuvo-green font-bold" 
+               class="flex items-center px-4 py-3 text-gray-600 rounded-xl transition-colors duration-200 hover:bg-gray-50 hover:text-nuvo-green group cursor-pointer">
+                <span>📊 Dashboard</span>
+            </a>
+
+            <a routerLink="/accounts" routerLinkActive="bg-nuvo-green/10 text-nuvo-green font-bold"
+               class="flex items-center px-4 py-3 text-gray-600 rounded-xl transition-colors duration-200 hover:bg-gray-50 hover:text-nuvo-green cursor-pointer">
+                <span>👥 Cuentas</span>
+            </a>
+
+            <a routerLink="/loans" routerLinkActive="bg-nuvo-green/10 text-nuvo-green font-bold"
+               class="flex items-center px-4 py-3 text-gray-600 rounded-xl transition-colors duration-200 hover:bg-gray-50 hover:text-nuvo-green cursor-pointer">
+                <span>💸 Préstamos</span>
+            </a>
+
+            <a routerLink="/pool" routerLinkActive="bg-nuvo-green/10 text-nuvo-green font-bold"
+               class="flex items-center px-4 py-3 text-gray-600 rounded-xl transition-colors duration-200 hover:bg-gray-50 hover:text-nuvo-green cursor-pointer">
+                <span>🏊 Piscina</span>
+            </a>
+
+        </nav>
+
+        <div class="p-4 border-t border-gray-100">
+            <button (click)="onLogout()" class="flex items-center w-full px-4 py-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors">
+                <span>🚪 Cerrar Sesión</span>
+            </button>
+        </div>
+    </aside>
+
+    <main class="flex-1 overflow-y-auto p-8">
+        <router-outlet></router-outlet>
+    </main>
+
+</div>

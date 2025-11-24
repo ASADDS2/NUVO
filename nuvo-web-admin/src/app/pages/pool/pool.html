@@ -1,0 +1,29 @@
+<div class="p-6">
+    <h2 class="text-2xl font-bold text-nuvo-dark mb-6">Inversiones Activas (Pool)</h2>
+
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <table class="w-full text-left">
+            <thead class="bg-gray-50 border-b border-gray-100">
+                <tr>
+                    <th class="p-4 text-gray-600">ID Inversor</th>
+                    <th class="p-4 text-gray-600">Monto Invertido</th>
+                    <th class="p-4 text-gray-600">Fecha Inicio</th>
+                    <th class="p-4 text-gray-600">Estado</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+                <tr *ngFor="let inv of investments" class="hover:bg-gray-50">
+                    <td class="p-4">#{{ inv.userId }}</td>
+                    <td class="p-4 font-bold text-blue-600">{{ inv.investedAmount | currency }}</td>
+                    <td class="p-4 text-gray-500">{{ inv.investedAt | date:'short' }}</td>
+                    <td class="p-4">
+                        <span [ngClass]="{'bg-green-100 text-green-800': inv.status === 'ACTIVE'}" 
+                              class="px-2 py-1 rounded-full text-xs font-bold">
+                            {{ inv.status }}
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

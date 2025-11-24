@@ -1,0 +1,17 @@
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+    
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+        <div class="text-gray-500 text-sm font-bold uppercase mb-2">Usuarios Totales</div>
+        <div class="text-3xl font-bold text-nuvo-dark">{{ totalUsers }}</div>
+        <div class="text-green-500 text-sm mt-2">Registrados en BD</div>
+    </div>
+
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+        <div class="text-gray-500 text-sm font-bold uppercase mb-2">Dinero Custodiado</div>
+        <div class="text-3xl font-bold text-nuvo-dark">
+            {{ totalMoney | currency:'USD':'symbol':'1.0-0' }}
+        </div>
+        <div class="text-nuvo-green text-sm mt-2">Balance Global</div>
+    </div>
+
+    </div>

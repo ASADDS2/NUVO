@@ -5,7 +5,9 @@ import com.nuvo.loan.dto.InvestRequest;
 import com.nuvo.loan.dto.PoolStats;
 import com.nuvo.loan.entity.Investment;
 import com.nuvo.loan.entity.InvestmentStatus;
+import com.nuvo.loan.entity.Pool;
 import com.nuvo.loan.repository.InvestmentRepository;
+import com.nuvo.loan.repository.PoolRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,15 +22,42 @@ import java.util.List;
 public class PoolService {
 
     private final InvestmentRepository repository;
+    private final PoolRepository poolRepository;
     private final AccountClient accountClient;
 
-    // Tasa de interés simulada: 1% por MINUTO para demo
-    private static final double INTEREST_RATE_PER_MINUTE = 0.01;
+    // Tasa de interés por defecto si el pool no tiene configurada (legacy)
+    private static final double DEFAULT_INTEREST_RATE_PER_DAY = 0.01; // 1% por día
 
     @Transactional
     public Investment invest(InvestRequest request) {
         if (request.getAmount().compareTo(BigDecimal.ZERO) <= 0) {
             throw new RuntimeException("El monto debe ser positivo");
+        }
+
+        Pool pool = null;
+        if (request.getPoolId() != null) {
+            // Validar que el pool existe y está activo
+            pool = poolRepository.findById(request.getPoolId())
+                    .orElseThrow(() -> new RuntimeException("Pool no encontrado"));
+
+            if (!pool.getActive()) {
+                throw new RuntimeException("El pool está inactivo");
+            }
+
+            // Validar que el pool no esté lleno
+            if (pool.isFull()) {
+                throw new RuntimeException("Pool lleno. Máximo de participantes: " + pool.getMaxParticipants());
+            }
+
+            // Verificar si el usuario ya tiene una inversión activa en este pool
+            boolean alreadyInvested = repository.existsByUserIdAndPoolIdAndStatus(
+                    request.getUserId(),
+                    pool.getId(),
+                    InvestmentStatus.ACTIVE);
+
+            if (alreadyInvested) {
+                throw new RuntimeException("Ya tienes una inversión activa en este pool");
+            }
         }
 
         // 1. Retirar dinero de la cuenta del usuario (Monto negativo)
@@ -38,6 +67,7 @@ public class PoolService {
         Investment investment = Investment.builder()
                 .userId(request.getUserId())
                 .investedAmount(request.getAmount())
+                .pool(pool)
                 .build();
 
         return repository.save(investment);
@@ -85,15 +115,27 @@ public class PoolService {
                 .build();
     }
 
-    // Lógica simple de Interés Compuesto simulado
+    // Lógica de Interés Compuesto diario (con fracciones de día para tiempo real)
     private BigDecimal calculateCurrentValue(Investment inv) {
-        long minutesElapsed = Duration.between(inv.getInvestedAt(), LocalDateTime.now()).toMinutes();
-        // Mínimo 0 minutos
-        if (minutesElapsed < 0)
-            minutesElapsed = 0;
+        // Determinar tasa de interés: usar la del pool si existe, sino usar tasa por
+        // defecto
+        double interestRate = DEFAULT_INTEREST_RATE_PER_DAY;
+        if (inv.getPool() != null && inv.getPool().getInterestRatePerDay() != null) {
+            interestRate = inv.getPool().getInterestRatePerDay();
+        }
 
-        // Formula: Monto * (1 + tasa)^minutos
-        double multiplier = Math.pow(1 + INTEREST_RATE_PER_MINUTE, minutesElapsed);
+        // Calcular tiempo transcurrido en SEGUNDOS y convertir a días decimales
+        long secondsElapsed = Duration.between(inv.getInvestedAt(), LocalDateTime.now()).getSeconds();
+        if (secondsElapsed < 0) {
+            secondsElapsed = 0;
+        }
+
+        // Convertir segundos a días (con fracciones)
+        // 1 día = 86400 segundos
+        double daysElapsed = secondsElapsed / 86400.0;
+
+        // Formula: Monto * (1 + tasa)^días
+        double multiplier = Math.pow(1 + interestRate, daysElapsed);
 
         return inv.getInvestedAmount().multiply(BigDecimal.valueOf(multiplier));
     }

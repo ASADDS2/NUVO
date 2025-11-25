@@ -5,6 +5,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard';
 import { AccountsComponent } from './pages/accounts/accounts';
 import { LoansComponent } from './pages/loans/loans';
 import { PoolComponent } from './pages/pool/pool';
+import { PoolManagementComponent } from './pages/pool-management/pool-management';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -17,8 +18,10 @@ export const routes: Routes = [
             { path: 'dashboard', component: DashboardComponent },
             { path: 'accounts', component: AccountsComponent },
             { path: 'loans', component: LoansComponent },
-            { path: 'pool', component: PoolComponent },
-            { path: '', redirectTo: 'dashboard', pathMatch: 'full' } // Por defecto ir al dashboard
+            { path: 'pool/invest', component: PoolComponent },
+            { path: 'pool/manage', component: PoolManagementComponent },
+            { path: 'pool', redirectTo: 'pool/invest', pathMatch: 'full' }, // Redirect legacy route
+            { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
         ]
     }
 ];

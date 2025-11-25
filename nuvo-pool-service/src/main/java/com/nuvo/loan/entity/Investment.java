@@ -29,6 +29,11 @@ public class Investment {
     @Enumerated(EnumType.STRING)
     private InvestmentStatus status; // ACTIVE, WITHDRAWN
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pool_id")
+    @com.fasterxml.jackson.annotation.JsonBackReference
+    private Pool pool; // Pool al que pertenece esta inversión
+
     @PrePersist
     public void onCreate() {
         this.investedAt = LocalDateTime.now();

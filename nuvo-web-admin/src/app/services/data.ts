@@ -24,7 +24,7 @@ export class DataService {
   }
 
   getLoansByUserId(userId: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.loanUrl}/user/${userId}`);
+    return this.http.get<any[]>(`${this.loanUrl}/my-loans/${userId}`);
   }
 
   approveLoan(loanId: number): Observable<any> {

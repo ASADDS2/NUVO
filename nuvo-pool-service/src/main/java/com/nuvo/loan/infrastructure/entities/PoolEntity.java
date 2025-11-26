@@ -1,6 +1,6 @@
 package com.nuvo.loan.infrastructure.entities;
 
-import com.nuvo.loan.domain.model.InvestmentStatus;
+import com.nuvo.loan.domain.model.InvestmentStatus; 
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;

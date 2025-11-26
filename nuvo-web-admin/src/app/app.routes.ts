@@ -8,11 +8,15 @@ import { PoolComponent } from './pages/pool/pool';
 import { PoolManagementComponent } from './pages/pool-management/pool-management';
 
 export const routes: Routes = [
+    // Ruta raíz redirige al login
+    { path: '', redirectTo: '/login', pathMatch: 'full' },
+
+    // Página de login (sin layout)
     { path: 'login', component: LoginComponent },
-    
+
     // Rutas protegidas (dentro del Layout)
-    { 
-        path: '', 
+    {
+        path: '',
         component: LayoutComponent,
         children: [
             { path: 'dashboard', component: DashboardComponent },
@@ -20,8 +24,7 @@ export const routes: Routes = [
             { path: 'loans', component: LoansComponent },
             { path: 'pool/invest', component: PoolComponent },
             { path: 'pool/manage', component: PoolManagementComponent },
-            { path: 'pool', redirectTo: 'pool/invest', pathMatch: 'full' }, // Redirect legacy route
-            { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
+            { path: 'pool', redirectTo: '/pool/invest', pathMatch: 'full' }
         ]
     }
 ];

@@ -14,8 +14,8 @@ export class LoginComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
 
-  email = 'bruno@nuvo.com'; // Pre-llenado para probar
-  password = 'password123';
+  email = ''; // Vacío por defecto
+  password = '';
   isLoading = false;
   errorMessage = '';
 
@@ -26,9 +26,8 @@ export class LoginComponent {
     this.authService.login(this.email, this.password).subscribe({
       next: () => {
         this.isLoading = false;
-        alert('¡LOGIN EXITOSO! Token guardado.');
+        // Redirigir directamente al dashboard sin alert
         this.router.navigate(['/dashboard']);
-        // this.router.navigate(['/dashboard']); // Descomentar luego
       },
       error: (err) => {
         this.isLoading = false;

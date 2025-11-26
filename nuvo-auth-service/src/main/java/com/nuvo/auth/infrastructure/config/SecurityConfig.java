@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
@@ -23,11 +24,17 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     private final JpaUserRepository repository;
+    private final CorsConfigurationSource corsConfigurationSource;
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return username -> repository.findByEmail(username)
-                .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
+        return username -> {
+            var user = repository.findByEmail(username)
+                    .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
+            System.out.println("DEBUG - Usuario encontrado: " + user.getEmail());
+            System.out.println("DEBUG - Password en BD: " + user.getPassword());
+            return user;
+        };
     }
 
     @Bean
@@ -51,10 +58,11 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .cors(cors -> cors.configurationSource(corsConfigurationSource))
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/v1/auth/**").permitAll()
-                        .anyRequest().authenticated())
+                        .anyRequest().permitAll())
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider());
 

@@ -135,7 +135,8 @@ export class PoolManagementComponent implements OnInit, OnDestroy {
     this.dataService.updatePool(this.selectedPool.id, {
       name: this.newPool.name,
       description: this.newPool.description,
-      maxParticipants: this.newPool.maxParticipants
+      maxParticipants: this.newPool.maxParticipants,
+      interestRatePerDay: this.newPool.interestRatePerDay
     }).subscribe({
       next: () => {
         alert('Pool actualizado exitosamente');

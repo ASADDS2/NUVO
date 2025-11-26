@@ -30,6 +30,7 @@ export interface UpdatePoolRequest {
   description?: string;
   maxParticipants?: number;
   active?: boolean;
+  interestRatePerDay?: number;
 }
 
 export interface Investment {

@@ -15,8 +15,10 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/authenticate`, { email, password }).pipe(
       tap((response: any) => {
         if (response.token) {
-          // Guardar token en el navegador
+          // Guardar token y datos de usuario
           localStorage.setItem('token', response.token);
+          localStorage.setItem('userId', response.id);
+          localStorage.setItem('role', response.role);
         }
       })
     );
@@ -26,7 +28,21 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
+  getUserId(): number {
+    return Number(localStorage.getItem('userId'));
+  }
+
+  getRole(): string {
+    return localStorage.getItem('role') || '';
+  }
+
+  isAdmin(): boolean {
+    return this.getRole() === 'ADMIN';
+  }
+
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('role');
   }
 }

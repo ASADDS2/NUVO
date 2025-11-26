@@ -105,6 +105,13 @@ public class ManagePoolUseCaseImpl implements ManagePoolUseCase {
             pool.setActive(request.getActive());
         }
 
+        if (request.getInterestRatePerDay() != null) {
+            if (request.getInterestRatePerDay() < 0) {
+                throw new RuntimeException("La tasa de interés debe ser mayor o igual a 0");
+            }
+            pool.setInterestRatePerDay(request.getInterestRatePerDay());
+        }
+
         return poolRepository.save(pool);
     }
 

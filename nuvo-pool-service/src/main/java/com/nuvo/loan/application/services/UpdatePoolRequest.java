@@ -19,6 +19,5 @@ public class UpdatePoolRequest {
 
     private Boolean active;
 
-    // Nota: No permitimos cambiar la tasa de interés de un pool existente
-    // para mantener la integridad de las inversiones activas
+    private Double interestRatePerDay;
 }

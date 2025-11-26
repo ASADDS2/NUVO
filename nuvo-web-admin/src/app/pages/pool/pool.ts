@@ -2,6 +2,7 @@ import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DataService } from '../../services/data';
+import { AuthService } from '../../services/auth';
 import { Pool } from '../../models/pool.model';
 
 @Component({
@@ -12,15 +13,20 @@ import { Pool } from '../../models/pool.model';
 })
 export class PoolComponent implements OnInit {
   private dataService = inject(DataService);
+  private authService = inject(AuthService);
   private cdr = inject(ChangeDetectorRef);
 
   pools: Pool[] = [];
   selectedPoolId: number | null = null;
   amount: number = 0;
-  userId: number = 1; // TODO: Get from auth service
   isLoading = false;
+  isAdmin = false;
 
   ngOnInit() {
+    const role = this.authService.getRole();
+    this.isAdmin = this.authService.isAdmin();
+    console.log('🔒 [Pool] Role:', role);
+    console.log('🔒 [Pool] Is Admin?', this.isAdmin);
     this.loadActivePools();
   }
 
@@ -29,7 +35,7 @@ export class PoolComponent implements OnInit {
     this.isLoading = true;
     
     this.dataService.getActivePools().subscribe({
-      next: (data) => {
+      next: (data: Pool[]) => {
         console.log('✅ [Pool] Pools recibidos:', data);
         console.log('📊 [Pool] Total de pools:', data?.length || 0);
         this.pools = data;
@@ -48,10 +54,16 @@ export class PoolComponent implements OnInit {
   }
 
   selectPool(poolId: number) {
+    if (this.isAdmin) return;
     this.selectedPoolId = poolId;
   }
 
   invest() {
+    if (this.isAdmin) {
+      alert('Los administradores no pueden invertir');
+      return;
+    }
+
     if (!this.selectedPoolId) {
       alert('Por favor selecciona un pool');
       return;
@@ -63,7 +75,9 @@ export class PoolComponent implements OnInit {
     }
 
     this.isLoading = true;
-    this.dataService.investInPool(this.userId, this.amount, this.selectedPoolId).subscribe({
+    const userId = this.authService.getUserId();
+    
+    this.dataService.investInPool(userId, this.amount, this.selectedPoolId).subscribe({
       next: () => {
         alert('¡Inversión realizada exitosamente!');
         this.amount = 0;
@@ -71,7 +85,7 @@ export class PoolComponent implements OnInit {
         this.isLoading = false;
         this.cdr.detectChanges();
       },
-      error: (err) => {
+      error: (err: any) => {
         console.error('Error invirtiendo:', err);
         alert(err.error || 'Error al realizar inversión');
         this.isLoading = false;

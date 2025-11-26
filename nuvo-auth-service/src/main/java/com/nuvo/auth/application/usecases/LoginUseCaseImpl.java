@@ -23,6 +23,10 @@ public class LoginUseCaseImpl implements LoginUseCase {
         var user = repository.findByEmail(request.getEmail())
                 .orElseThrow();
         var jwtToken = jwtPort.generateToken(user);
-        return AuthenticationResponse.builder().token(jwtToken).build();
+        return AuthenticationResponse.builder()
+                .token(jwtToken)
+                .id(user.getId())
+                .role(user.getRole().name())
+                .build();
     }
 }

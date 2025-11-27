@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login';
+import { LandingComponent } from './pages/landing/landing';
 import { LayoutComponent } from './components/layout/layout';
 import { DashboardComponent } from './pages/dashboard/dashboard';
 import { AccountsComponent } from './pages/accounts/accounts';
@@ -8,10 +9,10 @@ import { PoolComponent } from './pages/pool/pool';
 import { PoolManagementComponent } from './pages/pool-management/pool-management';
 
 export const routes: Routes = [
-    // Ruta raíz redirige al login
-    { path: '', redirectTo: '/login', pathMatch: 'full' },
+    // Ruta raíz es la Landing Page
+    { path: '', component: LandingComponent, pathMatch: 'full' },
 
-    // Página de login (sin layout)
+    // Página de login
     { path: 'login', component: LoginComponent },
 
     // Rutas protegidas (dentro del Layout)
@@ -24,7 +25,10 @@ export const routes: Routes = [
             { path: 'loans', component: LoansComponent },
             { path: 'pool/invest', component: PoolComponent },
             { path: 'pool/manage', component: PoolManagementComponent },
-            { path: 'pool', redirectTo: '/pool/invest', pathMatch: 'full' }
+            { path: 'pool', redirectTo: 'pool/invest', pathMatch: 'full' }
         ]
-    }
+    },
+
+    // Cualquier otra ruta redirige a la landing
+    { path: '**', redirectTo: '' }
 ];

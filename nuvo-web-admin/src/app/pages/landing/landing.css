@@ -1,0 +1,247 @@
+/* landing.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:host {
+    font-family: 'Inter', sans-serif;
+
+    /* Dark Theme (Default) */
+    --nuvo-green: #00E676;
+    --nuvo-bg: #050505;
+    --nuvo-card-bg: #111111;
+    --nuvo-text-primary: #ffffff;
+    --nuvo-text-secondary: #888888;
+    --nuvo-border: rgba(255, 255, 255, 0.05);
+    --nuvo-nav-bg: rgba(5, 5, 5, 0.8);
+    --nuvo-input-bg: rgba(255, 255, 255, 0.05);
+    --nuvo-shadow: rgba(0, 0, 0, 0.5);
+}
+
+/* Light Theme Override */
+/* Light Theme Override */
+.light-mode {
+    --nuvo-bg: #ffffff;
+    --nuvo-card-bg: #f8f9fa;
+    --nuvo-text-primary: #1a1a1a;
+    --nuvo-text-secondary: #666666;
+    --nuvo-border: rgba(0, 0, 0, 0.05);
+    --nuvo-nav-bg: rgba(255, 255, 255, 0.8);
+    --nuvo-input-bg: rgba(0, 0, 0, 0.03);
+    --nuvo-shadow: rgba(0, 0, 0, 0.05);
+}
+
+.bg-nuvo-dark {
+    background-color: var(--nuvo-bg);
+    transition: background-color 0.3s ease;
+}
+
+.bg-nuvo-card {
+    background-color: var(--nuvo-card-bg);
+    transition: background-color 0.3s ease;
+}
+
+.text-nuvo-green {
+    color: var(--nuvo-green);
+}
+
+.text-white {
+    color: var(--nuvo-text-primary);
+    transition: color 0.3s ease;
+}
+
+.text-gray-400 {
+    color: var(--nuvo-text-secondary);
+    transition: color 0.3s ease;
+}
+
+.text-gray-300 {
+    color: var(--nuvo-text-secondary);
+    transition: color 0.3s ease;
+}
+
+/* Navbar */
+.glass-nav {
+    background: var(--nuvo-nav-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--nuvo-border);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.nav-link {
+    position: relative;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--nuvo-text-secondary);
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--nuvo-green);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--nuvo-green);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--nuvo-green);
+    color: #000;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #00c865;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 230, 118, 0.3);
+}
+
+/* Cards */
+.nuvo-card {
+    background-color: var(--nuvo-card-bg);
+    border: 1px solid var(--nuvo-border);
+    transition: all 0.3s ease;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.nuvo-card:hover {
+    border-color: var(--nuvo-green);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px var(--nuvo-shadow);
+}
+
+/* Inputs */
+.nuvo-input {
+    background-color: var(--nuvo-input-bg);
+    border: 1px solid var(--nuvo-border);
+    color: var(--nuvo-text-primary);
+    transition: all 0.3s ease;
+}
+
+.nuvo-input:focus {
+    border-color: var(--nuvo-green);
+    outline: none;
+    background-color: transparent;
+}
+
+/* Badges */
+.badge-outline {
+    border: 1px solid rgba(0, 230, 118, 0.3);
+    color: var(--nuvo-text-primary);
+    background: rgba(0, 230, 118, 0.05);
+    transition: all 0.3s ease;
+}
+
+.badge-outline:hover {
+    background: rgba(0, 230, 118, 0.1);
+    border-color: var(--nuvo-green);
+}
+
+/* Admin Card Gradient */
+.admin-card-gradient {
+    background: radial-gradient(circle at center, #004d40 0%, #00251a 100%);
+    border: 1px solid rgba(0, 230, 118, 0.1);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--nuvo-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #444;
+}
+
+/* Animations */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.delay-100 {
+    animation-delay: 0.1s;
+}
+
+.delay-200 {
+    animation-delay: 0.2s;
+}
+
+.delay-300 {
+    animation-delay: 0.3s;
+}
+
+/* Staggered Animations for Cards */
+.nuvo-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.nuvo-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.nuvo-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.nuvo-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.nuvo-card:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.nuvo-card:nth-child(6) {
+    animation-delay: 0.6s;
+}

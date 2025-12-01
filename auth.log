@@ -1,0 +1,73 @@
+nohup: no se tendrá en cuenta la entrada
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------------< com.nuvo:auth-service >------------------------
+[INFO] Building auth-service 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.2.3:run (default-cli) > test-compile @ auth-service >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ auth-service ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 0 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ auth-service ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ auth-service ---
+[INFO] skip non existing resourceDirectory /home/Coder/Descargas/NUVO-main/nuvo-auth-service/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ auth-service ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] <<< spring-boot:3.2.3:run (default-cli) < test-compile @ auth-service <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.2.3:run (default-cli) @ auth-service ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.3)
+
+2025-11-27T19:30:38.717-05:00  INFO 63279 --- [auth-service] [           main] com.nuvo.auth.AuthApplication            : Starting AuthApplication using Java 17.0.17 with PID 63279 (/home/Coder/Descargas/NUVO-main/nuvo-auth-service/target/classes started by Coder in /home/Coder/Descargas/NUVO-main/nuvo-auth-service)
+2025-11-27T19:30:38.718-05:00  INFO 63279 --- [auth-service] [           main] com.nuvo.auth.AuthApplication            : No active profile set, falling back to 1 default profile: "default"
+2025-11-27T19:30:39.035-05:00  INFO 63279 --- [auth-service] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-27T19:30:39.064-05:00  INFO 63279 --- [auth-service] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 24 ms. Found 1 JPA repository interface.
+2025-11-27T19:30:39.325-05:00  INFO 63279 --- [auth-service] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-11-27T19:30:39.333-05:00  INFO 63279 --- [auth-service] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-27T19:30:39.333-05:00  INFO 63279 --- [auth-service] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2025-11-27T19:30:39.360-05:00  INFO 63279 --- [auth-service] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-27T19:30:39.361-05:00  INFO 63279 --- [auth-service] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 620 ms
+2025-11-27T19:30:39.451-05:00  INFO 63279 --- [auth-service] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-27T19:30:39.480-05:00  INFO 63279 --- [auth-service] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-11-27T19:30:39.497-05:00  INFO 63279 --- [auth-service] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-11-27T19:30:39.607-05:00  INFO 63279 --- [auth-service] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-27T19:30:39.621-05:00  INFO 63279 --- [auth-service] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-27T19:30:39.704-05:00  INFO 63279 --- [auth-service] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3e38c472
+2025-11-27T19:30:39.704-05:00  INFO 63279 --- [auth-service] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-27T19:30:39.724-05:00  WARN 63279 --- [auth-service] [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-27T19:30:40.118-05:00  INFO 63279 --- [auth-service] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-27T19:30:40.139-05:00  INFO 63279 --- [auth-service] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-27T19:30:40.321-05:00  WARN 63279 --- [auth-service] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-27T19:30:40.465-05:00  INFO 63279 --- [auth-service] [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@67376bae, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6d6d81c, org.springframework.security.web.context.SecurityContextHolderFilter@f0d01c9, org.springframework.security.web.header.HeaderWriterFilter@54ec8ab3, org.springframework.web.filter.CorsFilter@7c59cf66, org.springframework.security.web.authentication.logout.LogoutFilter@4889fbba, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@205b73d8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3c205259, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6bb71265, org.springframework.security.web.session.SessionManagementFilter@1c65ec63, org.springframework.security.web.access.ExceptionTranslationFilter@2de82bf8, org.springframework.security.web.access.intercept.AuthorizationFilter@3e3bf77b]
+2025-11-27T19:30:40.551-05:00  INFO 63279 --- [auth-service] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path ''
+2025-11-27T19:30:40.557-05:00  INFO 63279 --- [auth-service] [           main] com.nuvo.auth.AuthApplication            : Started AuthApplication in 2.036 seconds (process running for 2.2)
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  03:44 min
+[INFO] Finished at: 2025-11-27T19:34:21-05:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:3.2.3:run (default-cli) on project auth-service: Process terminated with exit code: 137 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

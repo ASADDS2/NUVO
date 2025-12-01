@@ -49,11 +49,13 @@ start_service() {
 
 # Verificar PostgreSQL
 echo -e "${YELLOW}🔍 Verificando PostgreSQL...${NC}"
-if systemctl is-active --quiet postgresql; then
-    echo -e "${GREEN}✓ PostgreSQL está corriendo${NC}"
+if docker ps --format '{{.Names}}' | grep -q "^nuvo_postgres$"; then
+    echo -e "${GREEN}✓ PostgreSQL (Docker) está corriendo${NC}"
 else
-    echo -e "${RED}✗ PostgreSQL no está corriendo. Iniciando...${NC}"
-    sudo systemctl start postgresql
+    echo -e "${RED}✗ PostgreSQL no está corriendo. Iniciando contenedor...${NC}"
+    docker run -d --name nuvo_postgres --network host -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=1234 -v "$BASE_DIR/docker/init-scripts":/docker-entrypoint-initdb.d -v postgres_data:/var/lib/postgresql/data postgres:16-alpine -p 5444
+    echo "Esperando a que la base de datos esté lista..."
+    sleep 10
 fi
 echo ""
 

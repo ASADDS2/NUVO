@@ -6,7 +6,7 @@ spring:
     name: account-service
   datasource:
     # Base de datos DIFERENTE: nuvo_account_db
-    url: jdbc:postgresql://localhost:5432/nuvo_account_db
+    url: jdbc:postgresql://localhost:5444/nuvo_account_db
     username: postgres
     password: 1234
     driver-class-name: org.postgresql.Driver

@@ -5,7 +5,7 @@ spring:
   application:
     name: pool-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/nuvo_pool_db
+    url: jdbc:postgresql://localhost:5444/nuvo_pool_db
     username: postgres
     password: 1234
     driver-class-name: org.postgresql.Driver

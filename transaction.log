@@ -1,0 +1,61 @@
+nohup: no se tendrá en cuenta la entrada
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.nuvo:transaction-service >--------------------
+[INFO] Building transaction-service 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.2.3:run (default-cli) > test-compile @ transaction-service >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ transaction-service ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 0 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ transaction-service ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ transaction-service ---
+[INFO] skip non existing resourceDirectory /home/Coder/Descargas/NUVO-main/nuvo-transaction-service/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ transaction-service ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] <<< spring-boot:3.2.3:run (default-cli) < test-compile @ transaction-service <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.2.3:run (default-cli) @ transaction-service ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.3)
+
+2025-11-27T19:21:02.763-05:00  INFO 52483 --- [transaction-service] [           main] c.n.transaction.TransactionApplication   : Starting TransactionApplication using Java 17.0.17 with PID 52483 (/home/Coder/Descargas/NUVO-main/nuvo-transaction-service/target/classes started by Coder in /home/Coder/Descargas/NUVO-main/nuvo-transaction-service)
+2025-11-27T19:21:02.765-05:00  INFO 52483 --- [transaction-service] [           main] c.n.transaction.TransactionApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-11-27T19:21:03.090-05:00  INFO 52483 --- [transaction-service] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-27T19:21:03.118-05:00  INFO 52483 --- [transaction-service] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 22 ms. Found 1 JPA repository interface.
+2025-11-27T19:21:03.212-05:00  INFO 52483 --- [transaction-service] [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=cd64f724-1106-3d7d-942d-d9ab6f497b3b
+2025-11-27T19:21:03.392-05:00  INFO 52483 --- [transaction-service] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8083 (http)
+2025-11-27T19:21:03.400-05:00  INFO 52483 --- [transaction-service] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-27T19:21:03.401-05:00  INFO 52483 --- [transaction-service] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2025-11-27T19:21:03.435-05:00  INFO 52483 --- [transaction-service] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-27T19:21:03.436-05:00  INFO 52483 --- [transaction-service] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 644 ms
+2025-11-27T19:21:03.534-05:00  INFO 52483 --- [transaction-service] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-27T19:21:03.565-05:00  INFO 52483 --- [transaction-service] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-11-27T19:21:03.584-05:00  INFO 52483 --- [transaction-service] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-11-27T19:21:03.712-05:00  INFO 52483 --- [transaction-service] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-27T19:21:03.728-05:00  INFO 52483 --- [transaction-service] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-27T19:21:03.792-05:00  INFO 52483 --- [transaction-service] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@63dda940
+2025-11-27T19:21:03.793-05:00  INFO 52483 --- [transaction-service] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-27T19:21:03.813-05:00  WARN 52483 --- [transaction-service] [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-27T19:21:04.230-05:00  INFO 52483 --- [transaction-service] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: create table transactions (id bigserial not null, amount numeric(38,2) not null, source_user_id integer, target_user_id integer, timestamp timestamp(6), type varchar(255), primary key (id))
+2025-11-27T19:21:04.265-05:00  INFO 52483 --- [transaction-service] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-27T19:21:04.463-05:00  WARN 52483 --- [transaction-service] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-27T19:21:04.729-05:00  INFO 52483 --- [transaction-service] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8083 (http) with context path ''
+2025-11-27T19:21:04.764-05:00  INFO 52483 --- [transaction-service] [           main] c.n.transaction.TransactionApplication   : Started TransactionApplication in 2.347 seconds (process running for 2.525)

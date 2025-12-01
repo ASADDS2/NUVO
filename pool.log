@@ -1,0 +1,68 @@
+nohup: no se tendrá en cuenta la entrada
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------------< com.nuvo:pool-service >------------------------
+[INFO] Building pool-service 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.2.3:run (default-cli) > test-compile @ pool-service >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ pool-service ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 0 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ pool-service ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ pool-service ---
+[INFO] skip non existing resourceDirectory /home/Coder/Descargas/NUVO-main/nuvo-pool-service/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ pool-service ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] <<< spring-boot:3.2.3:run (default-cli) < test-compile @ pool-service <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.2.3:run (default-cli) @ pool-service ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.3)
+
+2025-11-27T19:21:12.862-05:00  INFO 53576 --- [pool-service] [           main] com.nuvo.loan.PoolApplication            : Starting PoolApplication using Java 17.0.17 with PID 53576 (/home/Coder/Descargas/NUVO-main/nuvo-pool-service/target/classes started by Coder in /home/Coder/Descargas/NUVO-main/nuvo-pool-service)
+2025-11-27T19:21:12.863-05:00  INFO 53576 --- [pool-service] [           main] com.nuvo.loan.PoolApplication            : No active profile set, falling back to 1 default profile: "default"
+2025-11-27T19:21:13.177-05:00  INFO 53576 --- [pool-service] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-27T19:21:13.203-05:00  INFO 53576 --- [pool-service] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 23 ms. Found 2 JPA repository interfaces.
+2025-11-27T19:21:13.293-05:00  INFO 53576 --- [pool-service] [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=417d4b71-5276-331b-9c0b-19f3e05b968a
+2025-11-27T19:21:13.464-05:00  INFO 53576 --- [pool-service] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8085 (http)
+2025-11-27T19:21:13.471-05:00  INFO 53576 --- [pool-service] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-27T19:21:13.472-05:00  INFO 53576 --- [pool-service] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2025-11-27T19:21:13.502-05:00  INFO 53576 --- [pool-service] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-27T19:21:13.503-05:00  INFO 53576 --- [pool-service] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 615 ms
+2025-11-27T19:21:13.595-05:00  INFO 53576 --- [pool-service] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-27T19:21:13.617-05:00  INFO 53576 --- [pool-service] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-11-27T19:21:13.633-05:00  INFO 53576 --- [pool-service] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-11-27T19:21:13.737-05:00  INFO 53576 --- [pool-service] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-27T19:21:13.751-05:00  INFO 53576 --- [pool-service] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-27T19:21:13.806-05:00  INFO 53576 --- [pool-service] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@c0c8f96
+2025-11-27T19:21:13.807-05:00  INFO 53576 --- [pool-service] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-27T19:21:13.824-05:00  WARN 53576 --- [pool-service] [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-27T19:21:14.251-05:00  INFO 53576 --- [pool-service] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: create table investments (id bigserial not null, invested_amount numeric(38,2) not null, invested_at timestamp(6) not null, status varchar(255) check (status in ('ACTIVE','WITHDRAWN')), user_id integer not null, pool_id bigint, primary key (id))
+Hibernate: create table pools (id bigserial not null, active boolean not null, created_at timestamp(6) not null, description varchar(1000), interest_rate_per_day float(53) not null, max_participants integer not null, name varchar(100) not null, primary key (id))
+Hibernate: alter table if exists pools drop constraint if exists UK_2kkigfaq527b6iusyol3gqkx8
+2025-11-27T19:21:14.300-05:00  WARN 53576 --- [pool-service] [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-11-27T19:21:14.300-05:00  WARN 53576 --- [pool-service] [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "uk_2kkigfaq527b6iusyol3gqkx8" of relation "pools" does not exist, skipping
+Hibernate: alter table if exists pools add constraint UK_2kkigfaq527b6iusyol3gqkx8 unique (name)
+Hibernate: alter table if exists investments add constraint FK88s5ye9h5txxis7fmr5mx6l1e foreign key (pool_id) references pools
+2025-11-27T19:21:14.307-05:00  INFO 53576 --- [pool-service] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-27T19:21:14.500-05:00  INFO 53576 --- [pool-service] [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-27T19:21:14.721-05:00  WARN 53576 --- [pool-service] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-27T19:21:15.000-05:00  INFO 53576 --- [pool-service] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8085 (http) with context path ''
+2025-11-27T19:21:15.037-05:00  INFO 53576 --- [pool-service] [           main] com.nuvo.loan.PoolApplication            : Started PoolApplication in 2.42 seconds (process running for 2.57)
